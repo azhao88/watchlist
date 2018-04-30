@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -24,18 +24,28 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Watchlist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'll Watch Anything" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KV6-fb-c76">
-                                <rect key="frame" x="79.5" y="20" width="216" height="33"/>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Y2-6b-ozT">
+                                <rect key="frame" x="196" y="170" width="163" height="242"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="3wv-wA-HWK" appends="YES" id="DMa-Gp-dze"/>
+                                </connections>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What Should I Watch?" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KV6-fb-c76">
+                                <rect key="frame" x="62.666666666666657" y="44" width="250.99999999999997" height="33"/>
                                 <fontDescription key="fontDescription" name="Avenir-BlackOblique" family="Avenir" pointSize="24"/>
                                 <color key="textColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWX-RJ-Ur5">
-                                <rect key="frame" x="16" y="81" width="343" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWX-RJ-Ur5">
+                                <rect key="frame" x="16" y="85" width="343" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="ZmA-dJ-gzi"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -61,10 +71,6 @@
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Y2-6b-ozT">
-                                <rect key="frame" x="196" y="170" width="163" height="242"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sii-ox-daU">
                                 <rect key="frame" x="96" y="434" width="85" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -129,12 +135,13 @@
                                 <color key="textColor" red="0.75406885150000003" green="0.75408679249999999" blue="0.75407713649999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0H-1m-jjf">
-                                <rect key="frame" x="129" y="611" width="116" height="36"/>
-                                <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0H-1m-jjf">
+                                <rect key="frame" x="135" y="722" width="104" height="36"/>
+                                <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
+                                <color key="tintColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Surprise me!">
-                                    <color key="titleColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="randomMoviePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p00-Ja-UiJ"/>
@@ -143,9 +150,15 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uWX-RJ-Ur5" secondAttribute="trailing" constant="16" id="589-ag-eiP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="f0H-1m-jjf" secondAttribute="bottom" constant="20" id="CPc-at-7j3"/>
+                            <constraint firstItem="f0H-1m-jjf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IBE-OI-0vJ"/>
                             <constraint firstItem="f0H-1m-jjf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MoX-eL-TmU"/>
                             <constraint firstItem="KV6-fb-c76" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RN1-Dr-bDC"/>
+                            <constraint firstItem="KV6-fb-c76" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="cKQ-j6-G7z"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="f0H-1m-jjf" secondAttribute="bottom" constant="20" id="cad-2q-DlU"/>
+                            <constraint firstItem="uWX-RJ-Ur5" firstAttribute="top" secondItem="KV6-fb-c76" secondAttribute="bottom" constant="8" id="fuo-JG-Cnl"/>
+                            <constraint firstItem="uWX-RJ-Ur5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="q1W-dl-jBO"/>
                             <constraint firstItem="KV6-fb-c76" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xmc-x2-7pb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -166,10 +179,16 @@
                         <outlet property="rottenTomatoesLabel" destination="sii-ox-daU" id="f7I-WH-1x7"/>
                         <outlet property="runtimeLabel" destination="GkF-5E-sa1" id="3kb-eW-rty"/>
                         <outlet property="runtimeLabel2" destination="ok8-1H-vja" id="8JX-bu-EAV"/>
-                        <outlet property="titleLabel" destination="uWX-RJ-Ur5" id="J3D-YX-fj9"/>
+                        <outlet property="titleLabel" destination="uWX-RJ-Ur5" id="hnp-xo-lvf"/>
+                        <outlet property="watchLabel" destination="KV6-fb-c76" id="Oid-RS-3pQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3wv-wA-HWK">
+                    <connections>
+                        <action selector="posterTapped:" destination="BYZ-38-t0r" id="LSb-iT-Bid"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
         </scene>

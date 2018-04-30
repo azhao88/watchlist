@@ -9,9 +9,9 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import AlamofireImage
+import AVFoundation
 
-class ViewController: UIViewController, UISearchBarDelegate{
+class ViewController: UIViewController{
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
@@ -24,6 +24,7 @@ class ViewController: UIViewController, UISearchBarDelegate{
     @IBOutlet weak var imdbLabel: UILabel!
     @IBOutlet weak var button: UIButton!
     
+    @IBOutlet weak var watchLabel: UILabel!
     
     @IBOutlet weak var rottenImage: UIImageView!
     @IBOutlet weak var imdbImage: UIImageView!
@@ -32,21 +33,19 @@ class ViewController: UIViewController, UISearchBarDelegate{
     @IBOutlet weak var genreLabel2: UILabel!
     @IBOutlet weak var ratingLabel2: UILabel!
     
+    
+    
+    
     let idArray = [
-        "tt0903747",
-        "tt0944947",
         "tt0111161",
         "tt0068646",
-        "tt1475582",
         "tt0071562",
         "tt0468569",
         "tt0050083",
         "tt0060196",
         "tt0108052",
-        "tt0108778",
         "tt0110912",
         "tt0167260",
-        "tt4574334",
         "tt0080684",
         "tt0109830",
         "tt0120737",
@@ -56,7 +55,6 @@ class ViewController: UIViewController, UISearchBarDelegate{
         "tt0099685",
         "tt0133093",
         "tt0167261",
-        "tt0773262",
         "tt0076759",
         "tt0102926",
         "tt0110413",
@@ -91,7 +89,6 @@ class ViewController: UIViewController, UISearchBarDelegate{
         "tt0364569",
         "tt0411008",
         "tt0455275",
-        "tt0460649",
         "tt0910970",
         "tt1345836",
         "tt1520211",
@@ -115,7 +112,6 @@ class ViewController: UIViewController, UISearchBarDelegate{
         "tt0361748",
         "tt0372784",
         "tt0435761",
-        "tt0898266",
         "tt1049413",
         "tt0083658",
         "tt0095016",
@@ -184,6 +180,10 @@ class ViewController: UIViewController, UISearchBarDelegate{
     
     let key = "9c02bf5"
     var favoritesArray = [Movie]()
+    var soundPlayer = AVAudioPlayer()
+    var oldFrame: CGRect!
+    var counter = 0
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -195,12 +195,67 @@ class ViewController: UIViewController, UISearchBarDelegate{
         posterImage.isHidden = true
         rottenImage.isHidden = true
         imdbImage.isHidden = true
+        oldFrame = posterImage.frame
     }
-    
     
     //MARK:- Functions
     
+    func playSound(soundName: String, audioPlayer: inout AVAudioPlayer) {
+        //can we load a sound
+        if let sound = NSDataAsset(name: soundName) {
+            //check if sound.data is a sound file
+            do {
+                try audioPlayer = AVAudioPlayer(data: sound.data)
+                audioPlayer.play()
+            } catch {
+                print("ERROR: data in \(soundName) couldn't be played as a sound")
+            }
+        } else {
+            print("ERROR: file \(soundName) didn't load")
+        }
+    }
+    
+    func hideLabels(bool: Bool) {
+        titleLabel.isHidden = bool
+        ratingLabel.isHidden = bool
+        genreLabel.isHidden = bool
+        directorLabel.isHidden = bool
+        runtimeLabel.isHidden = bool
+        ratingLabel2.isHidden = bool
+        genreLabel2.isHidden = bool
+        directorLabel2.isHidden = bool
+        runtimeLabel2.isHidden = bool
+        rottenImage.isHidden = bool
+        rottenTomatoesLabel.isHidden = bool
+        imdbImage.isHidden = bool
+        imdbLabel.isHidden = bool
+        plotLabel.isHidden = bool
+        button.isHidden = bool
+        watchLabel.isHidden = bool
+    }
+    
+    
+    @IBAction func posterTapped(_ sender: Any) {
+        
+        let newFrame = CGRect(x: 20, y: 20, width: view.frame.width - 40, height: view.frame.height - 40)
+        
+        if counter == 0 {
+            
+            UIView.animate(withDuration: 0.5, animations: {self.posterImage.frame = newFrame})
+            counter = 1
+            hideLabels(bool: true)
+            
+            } else {
+            
+            UIView.animate(withDuration: 0.5, animations: {self.posterImage.frame = self.oldFrame})
+            counter = 0
+            hideLabels(bool: false)
+        }
+    }
+    
+    
     func callOMDB() {
+        self.playSound(soundName: "moviesound", audioPlayer: &self.soundPlayer)
         
         titleLabel.isHidden = false
         ratingLabel2.isHidden = false
@@ -211,9 +266,9 @@ class ViewController: UIViewController, UISearchBarDelegate{
         rottenImage.isHidden = false
         imdbImage.isHidden = false
         
-        var randNum = Int(arc4random_uniform(UInt32(idArray.count)))
-        var id = idArray[randNum]
-        var searchURL = "http://www.omdbapi.com/?i=\(id)&apikey=\(key)"
+        let randNum = Int(arc4random_uniform(UInt32(idArray.count)))
+        let id = idArray[randNum]
+        let searchURL = "http://www.omdbapi.com/?i=\(id)&apikey=\(key)"
         
         Alamofire.request(searchURL).responseJSON { response in
             print(response)
@@ -234,9 +289,9 @@ class ViewController: UIViewController, UISearchBarDelegate{
 //                let randomMovie = (Movie(title: title, year: year, rated: rated, genre: genre, plot: plot, director: director,  runtime: runtime, imdb: imdb, rottenTomatoes: rottenTomatoes, poster: poster))
 //                self.movieArray.append(randomMovie)
                 
-                var url = NSURL(string: poster)
-                var data = NSData(contentsOf : url! as URL)
-                var image = UIImage(data: data! as Data)
+                let url = NSURL(string: poster)
+                let data = NSData(contentsOf : url! as URL)
+                let image = UIImage(data: data! as Data)
                 
                 self.titleLabel.text = "\(title) (\(year))"
                 self.ratingLabel.text = rated
